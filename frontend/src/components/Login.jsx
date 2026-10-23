@@ -50,7 +50,7 @@ function Login() {
   };
 
   return (
-    <main className="h-full min-h-0 w-full overflow-y-auto bg-slate-50 px-4 py-6 text-slate-900 sm:px-8 sm:py-10">
+    <main className="auth-page h-full min-h-0 w-full overflow-y-auto bg-slate-50 px-4 py-6 text-slate-900 sm:px-8 sm:py-10">
       <div className="mx-auto flex min-h-full max-w-6xl items-center justify-center sm:min-h-[calc(100vh-5rem)]">
         <section className="grid w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_24px_70px_-35px_rgba(15,23,42,0.35)] lg:grid-cols-[0.82fr_1.18fr]">
           <div className="hidden bg-slate-900 p-12 text-white lg:flex lg:flex-col lg:justify-between">

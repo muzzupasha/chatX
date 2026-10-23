@@ -35,3 +35,86 @@ body {
 .landing-page .font-black {
   font-family: 'Manrope', 'DM Sans', sans-serif;
 }
+
+.auth-page {
+  background: #0b141a;
+  color: #f1f5f9;
+}
+
+.auth-page > div > section {
+  border-color: rgb(255 255 255 / 10%);
+  background: #202c33;
+  box-shadow: 0 30px 90px -45px rgb(0 0 0 / 80%);
+}
+
+.auth-page section > div:first-child {
+  background: #111b21;
+}
+
+.auth-page section > div:last-child {
+  background: #202c33;
+}
+
+.auth-page .text-slate-950,
+.auth-page .text-slate-900,
+.auth-page .text-slate-700 {
+  color: #f1f5f9;
+}
+
+.auth-page .text-slate-500,
+.auth-page .text-slate-400,
+.auth-page .text-slate-600 {
+  color: #94a3b8;
+}
+
+.auth-page .text-cyan-600,
+.auth-page .text-cyan-700,
+.auth-page .text-cyan-300,
+.auth-page .hover\:text-cyan-900:hover {
+  color: #6ee7b7;
+}
+
+.auth-page input,
+.auth-page select {
+  border-color: rgb(255 255 255 / 10%);
+  background-color: #111b21;
+  color: #f1f5f9;
+}
+
+.auth-page input::placeholder {
+  color: #64748b;
+}
+
+.auth-page input:focus,
+.auth-page select:focus {
+  border-color: rgb(110 231 183 / 60%);
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(16 185 129 / 15%);
+}
+
+.auth-page select option {
+  background: #202c33;
+  color: #f1f5f9;
+}
+
+.auth-page form button[type="submit"] {
+  background: #10b981;
+  color: #06251c;
+}
+
+.auth-page form button[type="submit"]:hover {
+  background: #34d399;
+}
+
+.auth-page form button[type="submit"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(16 185 129 / 20%);
+}
+
+.auth-page .text-green-700 {
+  color: #6ee7b7;
+}
+
+.auth-page .text-red-700 {
+  color: #fca5a5;
+}
