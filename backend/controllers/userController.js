@@ -158,3 +158,19 @@ export const getOtherUser = async (req, res) =>{
     }
 }
 
+// function debouncing the user search input
+export const checkUsername = async (req, res) => {
+    try {
+        const userName = String(req.query.userName || "").trim();
+
+        if (userName.length < 3) {
+            return res.status(400).json({ message: "Username must be at least 3 characters" });
+        }
+ 
+        const existingUser = await User.exists({ userName }); // Check if a user with the given username exists in the database
+        return res.status(200).json({ available: !existingUser }); // Return true if the username is available, false otherwise
+    } catch (error) {
+        console.error("Error checking username availability:", error);
+        return res.status(500).json({ message: "Unable to check username" });
+    }
+};
