@@ -92,6 +92,7 @@ function Signup() {
   };
 
   return (
+    // Render the signup form with input fields for full name, username, password, confirm password, and gender. The form includes validation feedback for username availability and password matching. The form is styled with Tailwind CSS classes for layout and appearance.
     <main className="h-full min-h-0 w-full overflow-y-auto bg-slate-50 px-4 py-6 text-slate-900 sm:px-8 sm:py-10">
       <div className="mx-auto flex min-h-full max-w-6xl items-center justify-center sm:min-h-[calc(100vh-5rem)]">
         <section className="grid w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_24px_70px_-35px_rgba(15,23,42,0.35)] lg:grid-cols-[0.82fr_1.18fr]">

@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import Sidebar from './Sidebar';
 import MessageContainer from './MessageContainer';
 
-const HomePage = () => {
-  const selectedUser = useSelector((store) => store.user.selectedUser);
+const HomePage = () => { // HomePage component that serves as the main layout for the chat application, displaying the sidebar and message container based on the selected user
+  const selectedUser = useSelector((store) => store.user.selectedUser); // Access the selectedUser from the Redux store
 
   return (
     <main className="app-viewport relative w-full overflow-hidden bg-[#111b21] text-slate-900">

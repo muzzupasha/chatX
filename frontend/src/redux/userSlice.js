@@ -1,14 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
-  name: 'user',
+  // Create a Redux slice for managing user-related state, including authentication, other users, selected user, messages, socket connection, and online users.
+  name: "user",
   initialState: {
     authUser: null,
     otherUsers: [],
     selectedUser: null,
     messages: [],
     socket: null,
-    onlineUsers: []
+    onlineUsers: [],
   },
   reducers: {
     setAuthUser: (state, action) => {
@@ -23,14 +24,21 @@ const userSlice = createSlice({
     setMessages: (state, action) => {
       state.messages = action.payload;
     },
-    setSocket: (state, action)=>{
-      state.socket = action.payload
+    setSocket: (state, action) => {
+      state.socket = action.payload;
     },
-    setOnlineUsers: (state, action)=>{
-      state.onlineUsers = Array.isArray(action.payload) ? action.payload : []
-    }
+    setOnlineUsers: (state, action) => {
+      state.onlineUsers = Array.isArray(action.payload) ? action.payload : [];
+    },
   },
 });
 
-export const { setAuthUser, setOtherUsers, setSelectedUser, setMessages, setSocket , setOnlineUsers } = userSlice.actions;
+export const {
+  setAuthUser,
+  setOtherUsers,
+  setSelectedUser,
+  setMessages,
+  setSocket,
+  setOnlineUsers,
+} = userSlice.actions;
 export default userSlice.reducer;

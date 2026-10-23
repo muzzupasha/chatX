@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMessages } from "../redux/userSlice";
 import { api } from "../utils/api";
 
-
 const SendInput = () => {
+  // SendInput component that provides an input field for typing and sending messages, along with buttons for adding attachments and emojis. It handles the message submission and updates the Redux store with the new message.
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
   const { selectedUser, messages } = useSelector((store) => store.user);
 
   const onSubmitHandler = async (e) => {
+    // Handle the form submission for sending a message. It prevents the default form submission behavior, checks if a receiver ID and message are present, sends the message to the server via an API call, and updates the Redux store with the new message if successful.
     e.preventDefault();
     const receiverId = selectedUser?.id ?? selectedUser?._id;
 
@@ -37,6 +38,7 @@ const SendInput = () => {
   };
 
   return (
+    // Render the form for sending messages, including an input field for typing the message, buttons for adding attachments and emojis, and a submit button for sending the message. The form is styled with Tailwind CSS classes for layout and appearance.
     <form
       onSubmit={onSubmitHandler}
       className="mt-2 rounded-2xl border border-white/10 bg-[#202c33] px-2 py-2 backdrop-blur-xl sm:mt-4 sm:rounded-[1.5rem] sm:px-3 sm:py-3"

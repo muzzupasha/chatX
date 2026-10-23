@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { setAuthUser } from "../redux/userSlice";
 import { api } from "../utils/api";
 
-const Sidebar = ({ className = '' }) => {
+const Sidebar = ({ className = "" }) => {
+  // Sidebar component that displays the authenticated user's information, a search input for searching conversations, a list of other users, and a logout button. It handles user interactions such as logging out and searching for conversations.
   const [search, setSearch] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const authUser = useSelector((store) => store.user.authUser);
@@ -20,6 +21,7 @@ const Sidebar = ({ className = '' }) => {
   const navigate = useNavigate();
 
   const logoutHandler = async () => {
+    // Function to handle user logout, making an API call to log the user out, navigating to the login page, and updating the Redux store to remove the authenticated user.
     try {
       const res = await api.get("/api/v1/user/Logout");
       navigate("/login");
@@ -31,12 +33,16 @@ const Sidebar = ({ className = '' }) => {
   };
 
   const searchSubmitHandler = (event) => {
+    // Function to handle the search form submission, preventing the default form submission behavior and updating the searchQuery state with the trimmed search input value.
     event.preventDefault();
     setSearchQuery(search.trim());
   };
 
   return (
-    <aside className={`${className} h-full min-h-0 w-full min-w-0 flex-col overflow-y-auto border-b border-white/10 bg-[#202c33] p-4 text-slate-100 backdrop-blur-xl sm:p-5 md:w-[320px] md:flex-none md:border-b-0 md:border-r md:p-6`}>
+    // Render the sidebar component with the authenticated user's information, a search input for searching conversations, a list of other users, and a logout button. The component is styled with Tailwind CSS classes for layout and appearance.
+    <aside
+      className={`${className} h-full min-h-0 w-full min-w-0 flex-col overflow-y-auto border-b border-white/10 bg-[#202c33] p-4 text-slate-100 backdrop-blur-xl sm:p-5 md:w-[320px] md:flex-none md:border-b-0 md:border-r md:p-6`}
+    >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/20 text-emerald-300 shadow-lg shadow-emerald-900/20">
@@ -91,8 +97,8 @@ const Sidebar = ({ className = '' }) => {
             <FiSearch size={16} />
           </button>
           <input
-          value={search}
-          onChange={(e)=>setSearch(e.target.value)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             className="w-full rounded-2xl border border-white/10 bg-[#111b21] py-3 pl-11 pr-4 text-sm text-slate-50 placeholder:text-slate-500 outline-none transition focus:border-emerald-300/60 focus:bg-[#172126] focus:ring-2 focus:ring-emerald-300/30"
             type="text"
             placeholder="Search conversations..."

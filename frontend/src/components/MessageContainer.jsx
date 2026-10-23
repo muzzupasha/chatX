@@ -11,16 +11,16 @@ import {
   FiVideo,
 } from "react-icons/fi";
 import { setSelectedUser } from "../redux/userSlice";
-import useGetMessages from "../hooks/useGetMessages"
+import useGetMessages from "../hooks/useGetMessages" 
 
-const MessageContainer = ({ className = '' }) => {
-  const { selectedUser, authUser, onlineUsers } = useSelector((store) => store.user);
+const MessageContainer = ({ className = '' }) => { // MessageContainer component that displays the selected user's messages and input field for sending messages
+  const { selectedUser, authUser, onlineUsers } = useSelector((store) => store.user); // Access the selectedUser, authUser, and onlineUsers from the Redux store
   const dispatch = useDispatch();
-  const selectedUserId = selectedUser?.id ?? selectedUser?._id;
-  const isSelectedUserOnline = onlineUsers.some(
+  const selectedUserId = selectedUser?.id ?? selectedUser?._id;  // Get the selected user's ID from the selectedUser object, handling different possible structures
+  const isSelectedUserOnline = onlineUsers.some(   // Check if the selected user is online by comparing their ID with the IDs of online users
     (onlineUserId) => String(onlineUserId) === String(selectedUserId),
   );
-  useGetMessages();
+  useGetMessages(); // Custom hook to fetch messages for the selected user and update the Redux store
   const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(
     selectedUser?.name ?? "Chat user",
   )}&background=0f766e&color=fff`;
@@ -31,7 +31,7 @@ const MessageContainer = ({ className = '' }) => {
   //   return () => dispatch(setSelectedUser(null));
   // }, []);
 
-  if (!selectedUser) {
+  if (!selectedUser) {  // If no user is selected, display a welcome message and instructions to choose a conversation from the sidebar
     return (
       <section
         className={`${className} h-full min-h-0 min-w-0 flex-1 items-center justify-center overflow-hidden bg-[#0b141a] p-4 text-slate-50 md:p-6`}
@@ -60,7 +60,7 @@ const MessageContainer = ({ className = '' }) => {
     );
   }
 
-  return (
+  return (  // If a user is selected, display the message container with the selected user's information, messages, and input field for sending messages
     <section className={`${className} h-full min-h-0 min-w-0 flex-1 flex-col overflow-hidden bg-[#111b21] p-2 text-slate-50 sm:p-4 md:p-6`}>
       <header className="flex min-w-0 items-center justify-between gap-2 rounded-2xl border border-white/8 bg-[#202c33] px-3 py-3 backdrop-blur-sm sm:rounded-[1.4rem] sm:px-4 sm:py-4">
         <div className="flex min-w-0 items-center gap-2 sm:gap-3">
