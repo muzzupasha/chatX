@@ -1,4 +1,8 @@
-# ChatApp
+# chatX
+
+<p align="center">
+  <img src="./frontend/public/chatx-neon-logo.png" alt="ChatX Neon messaging logo" width="180" />
+</p>
 
 A real-time one-to-one chat application built with React, Express, MongoDB, and Socket.IO. Create an account, find other users, and exchange messages in a responsive chat interface.
 
@@ -6,17 +10,17 @@ A real-time one-to-one chat application built with React, Express, MongoDB, and 
 
 ## The Problem
 
-Starting a direct conversation should not require a complicated setup or a crowded interface. ChatApp brings account creation, finding another user, and one-to-one messaging into one simple workflow. It keeps conversations available after a user leaves the page and delivers new messages in real time when both participants are connected.
+Starting a direct conversation should not require a complicated setup or a crowded interface. chatX brings account creation, finding another user, and one-to-one messaging into one simple workflow. It keeps conversations available after a user leaves the page and delivers new messages in real time when both participants are connected.
 
 ## Intended Impact
 
-ChatApp is designed to make direct communication approachable and immediate. Username availability feedback helps people choose an account name before submitting the registration form, while persistent conversations let participants return to their message history later. Live delivery and online presence make the interaction feel current instead of relying on manual refreshes.
+chatX is designed to make direct communication approachable and immediate. Username availability feedback helps people choose an account name before submitting the registration form, while persistent conversations let participants return to their message history later. Live delivery and online presence make the interaction feel current instead of relying on manual refreshes.
 
 As a compact full-stack application, it also demonstrates how a modern chat experience can be built from connected frontend, API, database, authentication, and realtime layers.
 
 ## What Makes It Different
 
-ChatApp is intentionally focused on the essentials of one-to-one conversation rather than trying to reproduce a large collaboration platform. Its distinguishing choices are:
+chatX is intentionally focused on the essentials of one-to-one conversation rather than trying to reproduce a large collaboration platform. Its distinguishing choices are:
 
 - **A direct workflow:** register, discover other users, and start a private conversation without extra workspace or channel setup.
 - **Responsive feedback:** debounced username checks provide availability feedback while a person is typing, without sending a request on every keystroke.
@@ -52,7 +56,7 @@ These are design goals and implementation choices, not claims of measured user o
 The repository contains two applications:
 
 ```text
-chatapp/
+chatX/
 ├── backend/     Express API, MongoDB models, authentication, and Socket.IO
 ├── frontend/    React client and Webpack configuration
 └── README.md
@@ -95,7 +99,7 @@ Create `backend/.env` with the following values:
 
 ```dotenv
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/chatapp
+MONGO_URI=mongodb://127.0.0.1:27017/chatx
 JWT_SECRET=replace-this-with-a-long-random-secret
 CLIENT_URL=http://localhost:3000
 ```

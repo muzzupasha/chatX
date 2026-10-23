@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import SendInput from "./SendInput";
 import Messages from "./Messages";
 import {
-  FiMessageCircle,
   FiMoreVertical,
   FiPhone,
   FiArrowLeft,
@@ -42,8 +41,8 @@ const MessageContainer = ({ className = '' }) => { // MessageContainer component
         }}
       >
         <div className="flex max-w-md flex-col items-center text-center">
-          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-emerald-300/25 bg-emerald-400/10 text-emerald-300 shadow-2xl shadow-emerald-950/40">
-            <FiMessageCircle size={38} strokeWidth={1.5} />
+          <div className="mb-6 overflow-hidden rounded-3xl border border-blue-400/30 shadow-2xl shadow-blue-950/40">
+            <img src="/chatx-neon-logo.png" alt="chatX" className="h-28 w-28 object-cover" />
           </div>
           <h1 className="text-3xl font-semibold tracking-tight text-slate-100">
             Welcome, {authUser?.fullName ?? "there"}

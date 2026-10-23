@@ -14,11 +14,13 @@ const LandingPage = () => {
       <div className="pointer-events-none absolute right-0 -top-20 h-96 w-96 rounded-full bg-[#d4eee0] blur-3xl sm:-right-24" />
 
       <nav className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
-        <Link to="/" className="flex items-center gap-3" aria-label="ChatApp home">
-          <span className="flex h-10 w-10 items-center justify-center rounded-[13px] bg-[#168c63] text-white shadow-lg shadow-[#168c63]/20">
-            <FiMessageCircle size={21} strokeWidth={2.5} />
-          </span>
-          <span className="text-lg font-black tracking-[-0.04em]">chatapp</span>
+        <Link to="/" className="flex items-center gap-3" aria-label="chatX home">
+          <img
+            src="/chatx-neon-logo.png"
+            alt=""
+            className="h-12 w-12 rounded-[13px] object-cover shadow-lg shadow-[#168c63]/20"
+          />
+          <span className="text-lg font-black tracking-[-0.04em]">chatX</span>
         </Link>
 
         <div className="flex items-center gap-3 text-sm font-semibold">

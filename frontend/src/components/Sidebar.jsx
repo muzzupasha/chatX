@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OtherUsers from "./OtherUsers";
 import { FiLogOut, FiSearch, FiSettings } from "react-icons/fi";
-import { IoChatbubblesOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { setAuthUser } from "../redux/userSlice";
@@ -45,11 +44,13 @@ const Sidebar = ({ className = "" }) => {
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/20 text-emerald-300 shadow-lg shadow-emerald-900/20">
-            <IoChatbubblesOutline size={22} />
-          </span>
-          <span className="text-xl font-bold tracking-[0.14em] text-slate-50">
-            CHATAPP
+          <img
+            src="/chatx-neon-logo.png"
+            alt="chatX"
+            className="h-12 w-12 rounded-xl object-cover shadow-lg shadow-blue-950/30"
+          />
+          <span className="text-xl font-bold tracking-tight text-slate-50">
+            chatX
           </span>
         </div>
         <button

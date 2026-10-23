@@ -112,11 +112,13 @@ function Signup() {
           <div className="hidden bg-slate-900 p-12 text-white lg:flex lg:flex-col lg:justify-between">
             <div>
               <div className="mb-16 flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyan-400 text-sm font-bold text-slate-950">
-                  C
-                </span>
-                <span className="text-sm font-semibold tracking-[0.18em] text-slate-200">
-                  CHATAPP
+                <img
+                  src="/chatx-neon-logo.png"
+                  alt="chatX"
+                  className="h-12 w-12 rounded-xl object-cover"
+                />
+                <span className="text-lg font-bold tracking-tight text-slate-100">
+                  chatX
                 </span>
               </div>
               <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-cyan-300">
@@ -137,9 +139,10 @@ function Signup() {
           <div className="p-6 sm:p-10 lg:p-12">
             <div className="mb-8 flex items-start justify-between gap-4">
               <div>
-                <p className="mb-2 text-sm font-medium text-cyan-600 lg:hidden">
-                  CHATAPP
-                </p>
+                <Link to="/" className="mb-5 inline-flex items-center gap-2 lg:hidden" aria-label="chatX home">
+                  <img src="/chatx-neon-logo.png" alt="" className="h-10 w-10 rounded-lg object-cover" />
+                  <span className="text-base font-bold text-slate-900">chatX</span>
+                </Link>
                 <h2 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
                   Create your account
                 </h2>
