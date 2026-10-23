@@ -2,6 +2,8 @@ import bcrypt from "bcryptjs";
 import { User } from "../model/userModel.js";
 import jwt from "jsonwebtoken";
 
+const USERNAME_REGEX = /^[A-Za-z0-9_]{3,20}$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{8,64}$/;
 
 // funtion for registering a new user
 export const register = async (req, res) => { 
@@ -9,6 +11,16 @@ export const register = async (req, res) => {
         const { userName, fullName, password, confirmPassword, gender} = req.body;
         if (!userName || !fullName || !password || !confirmPassword || !gender) {
             return res.status(400).json({ message: "All fields are required" });
+        }
+        if (!USERNAME_REGEX.test(userName)) {
+            return res.status(400).json({
+                message: "Username must be 3-20 letters, numbers, or underscores.",
+            });
+        }
+        if (!PASSWORD_REGEX.test(password)) {
+            return res.status(400).json({
+                message: "Password must be 8-64 characters and include uppercase, lowercase, a number, and a symbol.",
+            });
         }
         if (password !== confirmPassword) { 
             return res.status(400).json({ message: "Passwords do not match" });
@@ -163,8 +175,10 @@ export const checkUsername = async (req, res) => {
     try {
         const userName = String(req.query.userName || "").trim();
 
-        if (userName.length < 3) {
-            return res.status(400).json({ message: "Username must be at least 3 characters" });
+        if (!USERNAME_REGEX.test(userName)) {
+            return res.status(400).json({
+                message: "Username must be 3-20 letters, numbers, or underscores.",
+            });
         }
  
         const existingUser = await User.exists({ userName }); // Check if a user with the given username exists in the database

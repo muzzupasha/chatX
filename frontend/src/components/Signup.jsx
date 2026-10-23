@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { api } from "../utils/api";
 
+const USERNAME_REGEX = /^[A-Za-z0-9_]{3,20}$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{8,64}$/;
+
 // These names match the fields expected by the backend register controller.
 const initialForm = {
   fullName: "",
@@ -20,13 +23,15 @@ function Signup() {
   const [usernameStatus, setUsernameStatus] = useState("idle"); // "idle" | "checking" | "available" | "unavailable"
 
   const username = form.userName.trim(); // Trim whitespace from the username for validation and API requests.
+  const isUsernameValid = USERNAME_REGEX.test(username);
+  const isPasswordValid = PASSWORD_REGEX.test(form.password);
 
   useEffect(() => {
     // Effect to check username availability when the username changes.
-    if (username.length < 3) {
+    if (!USERNAME_REGEX.test(username)) {
       setUsernameStatus("idle");
       return;
-    } // If the username is less than 3 characters, set the status to "idle" and return early.
+    } // Only query availability for usernames that match the allowed format.
 
     const controller = new AbortController(); // Create an AbortController to allow aborting the fetch request if the component unmounts or the username changes before the request completes.
     setUsernameStatus("checking"); // Set the status to "checking" to indicate that the availability check is in progress.
@@ -64,6 +69,14 @@ function Signup() {
     event.preventDefault();
     try {
       // Keep this validation here so mismatched passwords never reach the API.
+      if (!USERNAME_REGEX.test(form.userName)) {
+        toast.error("Username must be 3-20 letters, numbers, or underscores.");
+        return;
+      }
+      if (!PASSWORD_REGEX.test(form.password)) {
+        toast.error("Password does not meet the required format.");
+        return;
+      }
       if (form.password !== form.confirmPassword) {
         toast.error("Passwords do not match.");
         return;
@@ -173,7 +186,10 @@ function Signup() {
                   className="h-12 w-full rounded-lg border border-slate-300 bg-white px-4 text-sm outline-none transition placeholder:text-slate-400 focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/10"
                   id="userName"
                   name="userName"
+                  minLength={3}
+                  maxLength={20}
                   onChange={handleChange}
+                  pattern="[A-Za-z0-9_]{3,20}"
                   placeholder="Choose a username"
                   required
                   type="text"
@@ -191,9 +207,12 @@ function Signup() {
                   }`}
                 >
                   {usernameStatus === "checking" && "Checking username..."}
+                  {username.length > 0 && !isUsernameValid &&
+                    "Use 3-20 letters, numbers, or underscores."}
                   {usernameStatus === "available" && "Username is available."}
-                  {usernameStatus === "taken" && "Username is already taken."}
-                  {usernameStatus === "error" &&
+                  {isUsernameValid && usernameStatus === "taken" &&
+                    "Username is already taken."}
+                  {isUsernameValid && usernameStatus === "error" &&
                     "Could not check username. You can still try signing up."}
                 </p>
               </div>
@@ -210,12 +229,30 @@ function Signup() {
                     className="h-12 w-full rounded-lg border border-slate-300 bg-white px-4 text-sm outline-none transition placeholder:text-slate-400 focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/10"
                     id="password"
                     name="password"
+                    minLength={8}
+                    maxLength={64}
                     onChange={handleChange}
                     placeholder="Create a password"
                     required
                     type="password"
                     value={form.password}
                   />
+                  <p
+                    aria-live="polite"
+                    className={`mt-1 text-sm ${
+                      !form.password
+                        ? "text-slate-600"
+                        : isPasswordValid
+                          ? "text-green-700"
+                          : "text-red-700"
+                    }`}
+                  >
+                    {!form.password
+                      ? "Use 8-64 characters with uppercase, lowercase, a number, and a symbol."
+                      : isPasswordValid
+                        ? "Password meets the requirements."
+                        : "Add uppercase, lowercase, a number, and a symbol (8-64 characters)."}
+                  </p>
                 </div>
                 <div>
                   <label
@@ -228,6 +265,7 @@ function Signup() {
                     className="h-12 w-full rounded-lg border border-slate-300 bg-white px-4 text-sm outline-none transition placeholder:text-slate-400 focus:border-cyan-500 focus:ring-4 focus:ring-cyan-500/10"
                     id="confirmPassword"
                     name="confirmPassword"
+                    maxLength={64}
                     onChange={handleChange}
                     placeholder="Repeat your password"
                     required
